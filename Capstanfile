@@ -1,0 +1,16 @@
+# Name of the base image. Capstan will download this automatically from Cloudius S3 repository.
+base:
+  cloudius/osv-openjdk8
+
+# The command to use to build the application.
+build:
+  mvn package
+
+# List of files that are included in the generated image.
+files:
+  /capstan-spring.jar: target/capstan-spring-0.0.1-SNAPSHOT.jar
+
+# The command line passed to OSv to start up the application.
+# For debug add "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005" before "-jar"
+cmdline:
+  /java.so -jar /capstan-spring.jar
